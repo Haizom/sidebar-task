@@ -1,0 +1,166 @@
+$primary-color: black;
+$secondary-color: #333;
+$background-color: #242424;
+$text-color: #fff;
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: calc(100vh - 40px);
+    background-color: $primary-color;
+    color: $text-color;
+    border: $secondary-color solid 2px;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.5;
+    transform: translateY(-50px);
+    transition: all 1s ease;
+    animation: fadeInUp 0.4s ease-in forwards;
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0.5;
+            transform: translateY(-50);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        span {
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+    }
+
+    .toggle-button {
+        background-color: $primary-color;
+        color: white;
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+        border: none;
+        position: relative;
+        left: 25px;
+        transition: all 1s ease;
+
+        transform: translateX(50px);
+        animation: fadeButton 2s ease forwards;
+        opacity: 0;
+    
+        @keyframes fadeButton {
+            from {
+                opacity: 0;
+                transform: translateX(50);
+            }
+    
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    }
+
+    .menu-items,
+    .bottom-menu-items {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+
+        .menu-item,
+        .bottom-menu-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: $secondary-color;
+            }
+
+            .menu-item-icon,
+            .bottom-menu-item-icon {
+                margin-right: 15px;
+            }
+
+            .menu-item-title,
+            .bottom-menu-item-title {
+                display: none;
+                animation: fadeOpen 2s ease forwards;
+                opacity: 0;
+            
+                @keyframes fadeOpen {
+                    from {
+                        opacity: 0;
+                    }
+            
+                    to {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &:hover {
+                .menu-item-title,
+                .bottom-menu-item-title {
+                    display: block;
+                    background-color: $secondary-color;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+
+    .bottom-menu-items {
+        margin-top: auto;
+    }
+
+    &.opened {
+        width: 200px;
+        height: calc(100vh - 40px);
+        transition: all 1s ease;
+
+        .toggle-button {
+            left: 44px;
+            background-color: $background-color;
+        }
+
+        .logo span {
+            display: block;
+            animation: fadeOpen 1s ease forwards;
+        }
+
+        .menu-items .menu-item-title,
+        .bottom-menu-items .bottom-menu-item-title {
+            display: block;
+        }
+
+    }
+}
